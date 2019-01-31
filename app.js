@@ -9,8 +9,13 @@ GAME RULES:
 
 */
 
- var scores, roundScore, activeScore;
+var scores, roundScore, activeScore, dice;
 
 scores = [0, 0];
 roundScore = 0;
-activeScore = 0;
+activeScore = 1;
+
+dice = Math.floor(Math.random() * 6) + 1;
+document.querySelector('#current-' + activeScore).textContent = dice;
+
+//document.querySelector('#current-' + activeScore).innerHTML = '<em>' + dice + '</em>'; 
