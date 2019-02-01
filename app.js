@@ -10,12 +10,14 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer;
+var scores, roundScore, activePlayer,gamePlay;
 
 init();
 
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
+    
+    if(gamePlay){
     // 1. we need a random number
     var dice = Math.floor(Math.random() * 6) + 1;
     
@@ -35,10 +37,12 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
         //Next Player
         nextPlayer();
     }  
+        }
     
 });
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
+   if(gamePlay){
     //Add current Score to Global Score
     scores[activePlayer] += roundScore;
     
@@ -53,10 +57,12 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         document.querySelector('.dice').style.display = 'none';
         document.querySelector('.player-' + activePlayer +'-panel').classList.add('winner');
         document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+        gamePlay = false;
     } else {
             //Next Player
             nextPlayer();  
     }
+   }
        
 });
 
@@ -83,6 +89,7 @@ scores = [0,0];
 roundScore = 0;
 //to keep track on currently playing player :
 activePlayer = 0;
+    gamePlay = true;
 
 
 document.querySelector('.dice').style.display = 'none';
